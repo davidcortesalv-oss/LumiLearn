@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LumiLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Nunito', 'sans-serif'],
+              logo: ['Quicksand', 'sans-serif'],
+            },
+            colors: {
+              lumi: {
+                bg: '#F0F4F8',
+                primary: '#6366F1', // Indigo 500
+                secondary: '#EC4899', // Pink 500
+                accent: '#F59E0B', // Amber 500
+                success: '#10B981', // Emerald 500
+                surface: '#FFFFFF',
+              },
+              // Palette Soft Candy Pastel
+              candy: {
+                pink: '#FFB7C5',
+                mint: '#C8F7DC',
+                sky: '#AEE4FF',
+                yellow: '#FEF4A6',
+                lilac: '#D9C6FF',
+                dark: '#3B3B3B'
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #F8FAFC; /* Azul pastel muy muy claro (slate-50) */
+      }
+      /* Custom scrollbar for a cleaner look */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #CBD5E1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94A3B8;
+      }
+
+      /* --- COLORFUL SCROLLBAR FOR SIDEBAR --- */
+      .colorful-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .colorful-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .colorful-scrollbar::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #FFB7C5 0%, #D9C6FF 50%, #AEE4FF 100%);
+        border-radius: 10px;
+        border: 2px solid transparent;
+        background-clip: content-box;
+      }
+      .colorful-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #EC4899 0%, #8B5CF6 50%, #3B82F6 100%);
+        border: 2px solid transparent;
+        background-clip: content-box;
+      }
+
+      .card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "d3": "https://aistudiocdn.com/d3@^7.9.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

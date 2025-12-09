@@ -1,0 +1,8 @@
+{
+  "name": "LumiLearn",
+  "description": "Una plataforma educativa gamificada y vibrante impulsada por IA. Aprende con chats inteligentes, mapas conceptuales generados automáticamente, quizzes con sistema de energía y un planificador de estudio adaptativo.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
