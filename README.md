@@ -1,20 +1,43 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# LumiLearn · Nomenclatura inorgánica
 
-# Run and deploy your AI Studio app
+Web app en React + Vite para practicar nomenclatura inorgánica de ESO/Bachillerato con corrección inmediata, modo examen, repaso inteligente de errores y estadísticas guardadas en `localStorage`.
 
-This contains everything you need to run your app locally.
+## Funciones principales
 
-View your app in AI Studio: https://ai.studio/apps/drive/1RaiIZxyyL2Hnqod3BizHEHjK133r6se_
+- Práctica rápida con corrección instantánea y explicación breve.
+- Examen de 40 ejercicios: 20 de nombrar y 20 de formular.
+- Repaso de errores, priorizando especialmente fallos repetidos, Stock y oxosales.
+- Ajustes por temas, nomenclatura, dificultad, temporizador y tolerancia de acentos.
+- Estadísticas de progreso, racha, histórico de notas y errores frecuentes.
+- Modo claro/oscuro y diseño responsive.
 
-## Run Locally
+## Ejecutar en local
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev
+```
 
+La app quedará disponible normalmente en `http://localhost:3000`.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Build de producción
+
+```bash
+npm run build
+npm run preview
+```
+
+## Estructura principal
+
+- `App.tsx`: interfaz principal y pantallas.
+- `data/chemistry.ts`: base química centralizada y guía integrada.
+- `lib/chemistry.ts`: generador de ejercicios, validación, progreso y examen.
+- `styles.css`: estilos globales.
+
+## Persistencia
+
+La aplicación guarda automáticamente en `localStorage`:
+
+- ajustes del usuario,
+- progreso y estadísticas,
+- tema visual.
