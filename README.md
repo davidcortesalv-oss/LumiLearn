@@ -1,26 +1,26 @@
-# LumiLearn · Nomenclatura inorgánica
+# LumiLearn · Nomenclatura inorgànica
 
-Web app en React + Vite para practicar nomenclatura inorgánica de ESO/Bachillerato con corrección inmediata, modo examen, repaso inteligente de errores y estadísticas guardadas en `localStorage`.
+Web app en React + Vite per practicar nomenclatura inorgànica d'ESO/Batxillerat amb correcció immediata, mode examen, repàs intel·ligent d'errors i estadístiques desades a `localStorage`.
 
-## Funciones principales
+## Funcionalitats principals
 
-- Práctica rápida con corrección instantánea y explicación breve.
-- Examen de 40 ejercicios: 20 de nombrar y 20 de formular.
-- Repaso de errores, priorizando especialmente fallos repetidos, Stock y oxosales.
-- Ajustes por temas, nomenclatura, dificultad, temporizador y tolerancia de acentos.
-- Estadísticas de progreso, racha, histórico de notas y errores frecuentes.
-- Modo claro/oscuro y diseño responsive.
+- Pràctica ràpida amb correcció instantània i explicació breu.
+- Examen de 40 exercicis: 20 d’anomenar i 20 de formular.
+- Repàs d’errors, prioritzant especialment errades repetides, Stock i oxosals.
+- Ajustos per temes, nomenclatura, dificultat, temporitzador i tolerància d’accents.
+- Estadístiques de progrés, ratxa, històric de notes i errades freqüents.
+- Mode clar/fosc i disseny responsive.
 
-## Ejecutar en local
+## Executar en local
 
 ```bash
 npm install
 npm run dev
 ```
 
-La app quedará disponible normalmente en `http://localhost:3000`.
+L’app quedarà disponible habitualment a `http://localhost:3000`.
 
-## Build de producción
+## Build de producció
 
 ```bash
 npm run build
@@ -29,15 +29,15 @@ npm run preview
 
 ## Estructura principal
 
-- `App.tsx`: interfaz principal y pantallas.
-- `data/chemistry.ts`: base química centralizada y guía integrada.
-- `lib/chemistry.ts`: generador de ejercicios, validación, progreso y examen.
-- `styles.css`: estilos globales.
+- `App.tsx`: interfície principal i pantalles.
+- `data/chemistry.ts`: base química centralitzada i guia integrada.
+- `lib/chemistry.ts`: generador d’exercicis, validació, progrés i examen.
+- `styles.css`: estils globals.
 
-## Persistencia
+## Persistència
 
-La aplicación guarda automáticamente en `localStorage`:
+L'aplicació desa automàticament a `localStorage`:
 
-- ajustes del usuario,
-- progreso y estadísticas,
+- ajustos de l'usuari,
+- progrés i estadístiques,
 - tema visual.

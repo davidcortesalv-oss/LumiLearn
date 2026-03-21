@@ -198,7 +198,7 @@ function App() {
   const seconds = (examState.timerSecondsLeft % 60).toString().padStart(2, '0');
 
   const renderPracticeCard = (state: QuickState | null, mode: 'quick' | 'review') => {
-    if (!state) return <div className="empty-state">No hay ejercicios disponibles con la configuración actual.</div>;
+    if (!state) return <div className="empty-state">No hi ha exercicis disponibles amb la configuració actual.</div>;
     return (
       <section className="panel practice-panel">
         <div className="practice-meta">
@@ -206,7 +206,7 @@ function App() {
           <span className="pill secondary">{NOMENCLATURE_LABELS[state.exercise.nomenclature]}</span>
           <span className="pill secondary">{DIFFICULTY_LABELS[state.exercise.difficulty]}</span>
         </div>
-        <h2>{mode === 'quick' ? 'Práctica rápida' : 'Repaso inteligente'}</h2>
+        <h2>{mode === 'quick' ? 'Pràctica ràpida' : 'Repàs intel·ligent'}</h2>
         <p className="prompt">{state.exercise.prompt}</p>
         <input
           className="answer-input"
@@ -226,11 +226,11 @@ function App() {
               }
             }
           }}
-          placeholder={state.exercise.direction === 'formula_to_name' ? 'Escribe el nombre correcto' : 'Escribe la fórmula correcta'}
+          placeholder={state.exercise.direction === 'formula_to_name' ? 'Escriu el nom correcte' : 'Escriu la fórmula correcta'}
         />
         <div className="row gap-sm">
           <button className="button primary" onClick={() => (state.checked ? (mode === 'quick' ? nextQuick() : nextReview()) : checkQuick(mode))}>
-            {state.checked ? 'Siguiente' : 'Corregir'}
+            {state.checked ? 'Següent' : 'Corregir'}
           </button>
           <button
             className="button ghost"
@@ -240,13 +240,13 @@ function App() {
                 : setReviewState({ ...state, checked: true, result: { isCorrect: false, expected: state.exercise.expected, explanation: state.exercise.explanation, normalizedUserAnswer: '' } })
             }
           >
-            Ver solución paso a paso
+            Veure la solució pas a pas
           </button>
         </div>
         {state.checked && state.result && (
           <div className={`feedback ${state.result.isCorrect ? 'success' : 'error'}`}>
-            <strong>{state.result.isCorrect ? '✅ Correcto.' : '❌ Incorrecto.'}</strong>
-            <span>Solución: {state.result.expected.join(' / ')}.</span>
+            <strong>{state.result.isCorrect ? '✅ Correcte.' : '❌ Incorrecte.'}</strong>
+            <span>Solució: {state.result.expected.join(' / ')}.</span>
             {(settings.autoExplanation || !state.result.isCorrect) && <p>{state.result.explanation}</p>}
           </div>
         )}
@@ -259,17 +259,17 @@ function App() {
       <aside className="sidebar">
         <div>
           <p className="eyebrow">LumiLearn</p>
-          <h1>Nomenclatura inorgánica</h1>
-          <p className="muted">Entrenador intensivo para ESO y Bachillerato, centrado en rapidez, rigor y exámenes tipo clase.</p>
+          <h1>Nomenclatura inorgànica</h1>
+          <p className="muted">Entrenador intensiu per a ESO i Batxillerat, centrat en rapidesa, rigor i exàmens tipus classe.</p>
         </div>
         <nav className="nav-list">
           {[
-            ['inicio', 'Inicio'],
-            ['practica', 'Práctica rápida'],
+            ['inicio', 'Inici'],
+            ['practica', 'Pràctica ràpida'],
             ['examen', 'Examen'],
-            ['repaso', 'Repaso de errores'],
-            ['estadisticas', 'Estadísticas'],
-            ['ajustes', 'Ajustes'],
+            ['repaso', "Repàs d'errors"],
+            ['estadisticas', 'Estadístiques'],
+            ['ajustes', 'Ajustos'],
           ].map(([id, label]) => (
             <button key={id} className={`nav-item ${view === id ? 'active' : ''}`} onClick={() => setView(id as View)}>
               {label}
@@ -278,7 +278,7 @@ function App() {
         </nav>
         <div className="theme-switcher">
           <button className="button ghost small" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-            {theme === 'light' ? 'Modo oscuro' : 'Modo claro'}
+            {theme === 'light' ? 'Mode fosc' : 'Mode clar'}
           </button>
         </div>
       </aside>
@@ -288,29 +288,29 @@ function App() {
           <>
             <section className="hero panel">
               <div>
-                <p className="eyebrow">Preparación de examen</p>
-                <h2>Haz muchos ejercicios seguidos, corrige al instante y repite justo lo que más fallas.</h2>
+                <p className="eyebrow">Preparació d'examen</p>
+                <h2>Fes molts exercicis seguits, corregeix a l’instant i repeteix exactament allò que més et costa.</h2>
                 <p>
-                  La app genera ejercicios de óxidos, hidruros, hidróxidos, sales binarias, hidrácidos, oxoácidos, oxosales,
-                  sales ácidas y amonio con nomenclatura Stock, sistemática y tradicional.
+                  L'app genera exercicis d'òxids, hidrurs, hidròxids, sals binàries, hidràcids, oxoàcids, oxosals,
+                  sals àcides i amoni amb nomenclatura Stock, sistemàtica i tradicional.
                 </p>
                 <div className="row wrap">
-                  <button className="button primary" onClick={() => setView('practica')}>Empezar práctica rápida</button>
-                  <button className="button" onClick={() => setView('examen')}>Ir al examen de 40 ejercicios</button>
+                  <button className="button primary" onClick={() => setView('practica')}>Començar pràctica ràpida</button>
+                  <button className="button" onClick={() => setView('examen')}>Anar a l'examen de 40 exercicis</button>
                 </div>
               </div>
               <div className="stats-grid compact">
-                <article className="stat-card"><strong>{COMPOUNDS.length}</strong><span>compuestos base rigurosos</span></article>
-                <article className="stat-card"><strong>{getExercisePool(settings).length}</strong><span>ejercicios generables</span></article>
-                <article className="stat-card"><strong>{globalPercentage}%</strong><span>porcentaje global</span></article>
-                <article className="stat-card"><strong>{progress.stats.streak}</strong><span>racha actual</span></article>
+                <article className="stat-card"><strong>{COMPOUNDS.length}</strong><span>compostos base rigorosos</span></article>
+                <article className="stat-card"><strong>{getExercisePool(settings).length}</strong><span>exercicis generables</span></article>
+                <article className="stat-card"><strong>{globalPercentage}%</strong><span>percentatge global</span></article>
+                <article className="stat-card"><strong>{progress.stats.streak}</strong><span>ratxa actual</span></article>
               </div>
             </section>
 
             <section className="panel">
               <div className="section-header">
-                <h3>Guía rápida integrada</h3>
-                <span className="muted">Resumen de los tipos de compuestos más preguntados.</span>
+                <h3>Guia ràpida integrada</h3>
+                <span className="muted">Resum dels tipus de compostos més preguntats.</span>
               </div>
               <div className="guide-grid">
                 {STUDY_GUIDE.map((item) => (
@@ -329,9 +329,9 @@ function App() {
         {view === 'repaso' && (
           <>
             <section className="panel info-bar">
-              <h3>Repaso de errores</h3>
+              <h3>Repàs d'errors</h3>
               <p>
-                Este modo prioriza compuestos que ya has fallado. Si te cuesta Stock u oxosales, aparecerán con más frecuencia.
+                Aquest mode prioritza compostos que ja has fallat. Si et costen Stock o les oxosals, apareixeran amb més freqüència.
               </p>
             </section>
             {renderPracticeCard(reviewState, 'review')}
@@ -343,21 +343,21 @@ function App() {
             <div className="section-header between">
               <div>
                 <p className="eyebrow">Pantalla específica: Examen</p>
-                <h2>Hoja de examen realista</h2>
-                <p>20 fórmulas para nombrar + 20 nombres para formular, sin pistas y con corrección final sobre 10.</p>
+                <h2>Full d'examen realista</h2>
+                <p>20 fórmules per anomenar + 20 noms per formular, sense pistes i amb correcció final sobre 10.</p>
               </div>
               <div className="row wrap align-center">
                 {settings.timerEnabled && <div className="timer">⏱ {minutes}:{seconds}</div>}
-                <button className="button ghost" onClick={() => generateNewExam(false)}>Generar otro examen</button>
-                <button className="button ghost" onClick={() => generateNewExam(true)}>Generar examen parecido al anterior</button>
-                {!examState.submitted && <button className="button primary" onClick={submitExam}>Entregar examen</button>}
-                {examState.submitted && <button className="button" onClick={repeatExamMistakes}>Repetir solo los fallos</button>}
+                <button className="button ghost" onClick={() => generateNewExam(false)}>Generar un altre examen</button>
+                <button className="button ghost" onClick={() => generateNewExam(true)}>Generar un examen semblant a l'anterior</button>
+                {!examState.submitted && <button className="button primary" onClick={submitExam}>Lliurar examen</button>}
+                {examState.submitted && <button className="button" onClick={repeatExamMistakes}>Repetir només les errades</button>}
               </div>
             </div>
 
             <div className="exam-grid">
               <div>
-                <h3>BLOQUE A: 20 fórmulas para nombrar</h3>
+                <h3>BLOC A: 20 fórmules per anomenar</h3>
                 {examState.items.slice(0, 20).map((item, index) => (
                   <div key={item.id} className={`exam-row ${examState.submitted ? (examState.results[index]?.isCorrect ? 'ok' : 'ko') : ''}`}>
                     <label>{index + 1}. {item.formula}</label>
@@ -374,7 +374,7 @@ function App() {
                 ))}
               </div>
               <div>
-                <h3>BLOQUE B: 20 nombres para formular</h3>
+                <h3>BLOC B: 20 noms per formular</h3>
                 {examState.items.slice(20).map((item, localIndex) => {
                   const index = localIndex + 20;
                   return (
@@ -399,13 +399,13 @@ function App() {
               <div className="exam-results">
                 <div className="stats-grid compact">
                   <article className="stat-card"><strong>{examScore}</strong><span>nota sobre 10</span></article>
-                  <article className="stat-card"><strong>{examCorrect}</strong><span>aciertos</span></article>
-                  <article className="stat-card"><strong>{40 - examCorrect}</strong><span>errores</span></article>
-                  <article className="stat-card"><strong>{examPercentage}%</strong><span>porcentaje</span></article>
+                  <article className="stat-card"><strong>{examCorrect}</strong><span>encerts</span></article>
+                  <article className="stat-card"><strong>{40 - examCorrect}</strong><span>errades</span></article>
+                  <article className="stat-card"><strong>{examPercentage}%</strong><span>percentatge</span></article>
                 </div>
                 <div className="panel review-panel">
                   <div className="row between wrap">
-                    <h3>Revisión uno por uno</h3>
+                    <h3>Revisió una per una</h3>
                     <div className="row gap-sm wrap">
                       {examState.items.map((_, index) => (
                         <button key={index} className={`mini-pill ${activeExamReviewIndex === index ? 'active' : ''}`} onClick={() => setActiveExamReviewIndex(index)}>{index + 1}</button>
@@ -413,9 +413,9 @@ function App() {
                     </div>
                   </div>
                   <div className={`feedback ${examState.results[activeExamReviewIndex]?.isCorrect ? 'success' : 'error'}`}>
-                    <strong>{examState.results[activeExamReviewIndex]?.isCorrect ? 'Correcto' : 'Incorrecto'}</strong>
-                    <p>Tu respuesta: {examState.answers[activeExamReviewIndex] || '—'}</p>
-                    <p>Solución correcta: {examState.results[activeExamReviewIndex]?.expected.join(' / ')}</p>
+                    <strong>{examState.results[activeExamReviewIndex]?.isCorrect ? 'Correcte' : 'Incorrecte'}</strong>
+                    <p>La teva resposta: {examState.answers[activeExamReviewIndex] || '—'}</p>
+                    <p>Solució correcta: {examState.results[activeExamReviewIndex]?.expected.join(' / ')}</p>
                     <p>{examState.results[activeExamReviewIndex]?.explanation}</p>
                   </div>
                 </div>
@@ -427,41 +427,41 @@ function App() {
         {view === 'estadisticas' && (
           <>
             <section className="stats-grid">
-              <article className="stat-card"><strong>{progress.stats.totalCorrect}</strong><span>aciertos totales</span></article>
-              <article className="stat-card"><strong>{progress.stats.totalWrong}</strong><span>errores totales</span></article>
-              <article className="stat-card"><strong>{globalPercentage}%</strong><span>porcentaje global</span></article>
-              <article className="stat-card"><strong>{progress.stats.streak}</strong><span>racha actual</span></article>
-              <article className="stat-card"><strong>{progress.stats.bestStreak}</strong><span>mejor racha</span></article>
+              <article className="stat-card"><strong>{progress.stats.totalCorrect}</strong><span>encerts totals</span></article>
+              <article className="stat-card"><strong>{progress.stats.totalWrong}</strong><span>errades totals</span></article>
+              <article className="stat-card"><strong>{globalPercentage}%</strong><span>percentatge global</span></article>
+              <article className="stat-card"><strong>{progress.stats.streak}</strong><span>ratxa actual</span></article>
+              <article className="stat-card"><strong>{progress.stats.bestStreak}</strong><span>millor ratxa</span></article>
               <article className="stat-card"><strong>{progress.examHistory[0]?.score ?? '—'}</strong><span>última nota</span></article>
             </section>
             <section className="two-columns">
               <article className="panel">
-                <h3>Temas más fallados</h3>
+                <h3>Temes amb més errades</h3>
                 <ul className="list-clean">
-                  {topicSummary.length ? topicSummary.map((item) => <li key={item.label}><span>{item.label}</span><strong>{item.count}</strong></li>) : <li>Sin datos todavía.</li>}
+                  {topicSummary.length ? topicSummary.map((item) => <li key={item.label}><span>{item.label}</span><strong>{item.count}</strong></li>) : <li>Encara no hi ha dades.</li>}
                 </ul>
               </article>
               <article className="panel">
-                <h3>Nomenclatura más fallada</h3>
+                <h3>Nomenclatura amb més errades</h3>
                 <ul className="list-clean">
-                  {nomenclatureSummary.length ? nomenclatureSummary.map((item) => <li key={item.label}><span>{item.label}</span><strong>{item.count}</strong></li>) : <li>Sin datos todavía.</li>}
+                  {nomenclatureSummary.length ? nomenclatureSummary.map((item) => <li key={item.label}><span>{item.label}</span><strong>{item.count}</strong></li>) : <li>Encara no hi ha dades.</li>}
                 </ul>
               </article>
             </section>
             <section className="two-columns">
               <article className="panel">
-                <h3>Histórico de notas</h3>
+                <h3>Històric de notes</h3>
                 <div className="chart">
                   {progress.examHistory.length ? progress.examHistory.slice(0, 10).reverse().map((exam) => (
                     <div key={exam.id} className="bar-wrap">
                       <div className="bar" style={{ height: `${Math.max(8, exam.score * 10)}%` }} />
                       <span>{exam.score}</span>
                     </div>
-                  )) : <p className="muted">Todavía no has entregado ningún examen.</p>}
+                  )) : <p className="muted">Encara no has lliurat cap examen.</p>}
                 </div>
               </article>
               <article className="panel">
-                <h3>Errores frecuentes</h3>
+                <h3>Errades freqüents</h3>
                 <ul className="list-clean dense">
                   {weakErrors.length ? weakErrors.map((item, index) => (
                     <li key={`${item.exerciseId}-${index}`}>
@@ -469,9 +469,9 @@ function App() {
                         <strong>{item.correctAnswer}</strong>
                         <p>{COMPOUND_TYPE_LABELS[item.type]} · {item.nomenclature}</p>
                       </div>
-                      <span>{item.answer || 'sin respuesta'}</span>
+                      <span>{item.answer || 'sense resposta'}</span>
                     </li>
-                  )) : <li>Sin errores registrados todavía.</li>}
+                  )) : <li>Encara no hi ha errades registrades.</li>}
                 </ul>
               </article>
             </section>
@@ -480,10 +480,10 @@ function App() {
 
         {view === 'ajustes' && (
           <section className="panel settings-panel">
-            <h2>Ajustes de estudio</h2>
+            <h2>Ajustos d'estudi</h2>
             <div className="settings-grid">
               <article>
-                <h3>Nomenclaturas activas</h3>
+                <h3>Nomenclatures actives</h3>
                 <div className="chip-grid">
                   {(Object.keys(NOMENCLATURE_LABELS) as Nomenclature[]).map((item) => (
                     <button
@@ -497,7 +497,7 @@ function App() {
                 </div>
               </article>
               <article>
-                <h3>Temas activos</h3>
+                <h3>Temes actius</h3>
                 <div className="chip-grid">
                   {(Object.keys(COMPOUND_TYPE_LABELS) as CompoundType[]).map((item) => (
                     <button
@@ -511,21 +511,21 @@ function App() {
                 </div>
               </article>
               <article>
-                <h3>Dificultad</h3>
+                <h3>Dificultat</h3>
                 <select value={settings.difficulty} onChange={(event) => setSettings({ ...settings, difficulty: event.target.value as Settings['difficulty'] })}>
                   {Object.entries(DIFFICULTY_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
                 </select>
               </article>
               <article>
-                <h3>Tiempo por examen</h3>
+                <h3>Temps per examen</h3>
                 <input type="number" min={5} max={90} value={settings.examMinutes} onChange={(event) => setSettings({ ...settings, examMinutes: Number(event.target.value) })} />
               </article>
               <article>
-                <h3>Corrección</h3>
-                <label className="toggle"><input type="checkbox" checked={settings.autoCorrection} onChange={(event) => setSettings({ ...settings, autoCorrection: event.target.checked })} /> Corrección automática</label>
-                <label className="toggle"><input type="checkbox" checked={settings.autoExplanation} onChange={(event) => setSettings({ ...settings, autoExplanation: event.target.checked })} /> Explicación automática</label>
-                <label className="toggle"><input type="checkbox" checked={settings.acceptAccentsOptional} onChange={(event) => setSettings({ ...settings, acceptAccentsOptional: event.target.checked })} /> Acentos opcionales</label>
-                <label className="toggle"><input type="checkbox" checked={settings.timerEnabled} onChange={(event) => setSettings({ ...settings, timerEnabled: event.target.checked })} /> Cronómetro en examen</label>
+                <h3>Correcció</h3>
+                <label className="toggle"><input type="checkbox" checked={settings.autoCorrection} onChange={(event) => setSettings({ ...settings, autoCorrection: event.target.checked })} /> Correcció automàtica</label>
+                <label className="toggle"><input type="checkbox" checked={settings.autoExplanation} onChange={(event) => setSettings({ ...settings, autoExplanation: event.target.checked })} /> Explicació automàtica</label>
+                <label className="toggle"><input type="checkbox" checked={settings.acceptAccentsOptional} onChange={(event) => setSettings({ ...settings, acceptAccentsOptional: event.target.checked })} /> Accents opcionals</label>
+                <label className="toggle"><input type="checkbox" checked={settings.timerEnabled} onChange={(event) => setSettings({ ...settings, timerEnabled: event.target.checked })} /> Cronòmetre a l’examen</label>
               </article>
             </div>
           </section>

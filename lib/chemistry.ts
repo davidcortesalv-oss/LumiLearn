@@ -85,8 +85,8 @@ export const buildExercise = (
     difficulty: compound.difficulty,
     prompt:
       direction === 'formula_to_name'
-        ? `Nombra la fórmula ${compound.formula} usando nomenclatura ${nomenclature}.`
-        : `Escribe la fórmula de ${primaryName}.`,
+        ? `Anomena la fórmula ${compound.formula} amb nomenclatura ${nomenclature}.`
+        : `Escriu la fórmula de ${primaryName}.`,
     expected: direction === 'formula_to_name' ? compound.names[nomenclature] : [compound.formula],
     formula: compound.formula,
     explanation: compound.explanation,
