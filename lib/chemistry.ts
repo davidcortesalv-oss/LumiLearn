@@ -62,7 +62,7 @@ export const normalizeText = (value: string, acceptAccentsOptional = true): stri
     .trim();
 };
 
-export const normalizeFormula = (value: string): string => normalizeText(value, false).replace(/\s+/g, '');
+export const normalizeFormula = (value: string): string => normalizeText(value, false).replace(/\^/g, '').replace(/\s+/g, '');
 
 export const isCompoundAllowed = (compound: CompoundEntry, settings: Settings) => {
   const typeAllowed = settings.activeTypes.includes(compound.type);

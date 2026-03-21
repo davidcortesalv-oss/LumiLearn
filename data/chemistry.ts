@@ -10,7 +10,7 @@ export type CompoundType =
   | 'oxoacidos'
   | 'oxosales'
   | 'sales_acidas'
-  | 'amonio';
+  | 'iones';
 
 export type Nomenclature = 'stock' | 'sistematica' | 'tradicional';
 export type PracticeDirection = 'formula_to_name' | 'name_to_formula';
@@ -28,7 +28,6 @@ export interface CompoundEntry {
 export const COMPOUND_TYPE_LABELS: Record<CompoundType, string> = {
   oxidos_metalicos: 'Òxids metàl·lics',
   oxidos_no_metalicos: 'Òxids no metàl·lics',
-  peroxidos: 'Peròxids',
   hidruros_metalicos: 'Hidrurs metàl·lics',
   hidruros_no_metalicos: 'Hidrurs no metàl·lics',
   hidroxidos: 'Hidròxids',
@@ -36,8 +35,7 @@ export const COMPOUND_TYPE_LABELS: Record<CompoundType, string> = {
   'hidrácidos': 'Hidràcids',
   oxoacidos: 'Oxoàcids',
   oxosales: 'Oxosals',
-  sales_acidas: 'Sals àcides',
-  amonio: 'Sals amb ió amoni',
+  iones: 'Ions',
 };
 
 export const NOMENCLATURE_LABELS: Record<Nomenclature, string> = {
@@ -80,10 +78,6 @@ export const STUDY_GUIDE = [
     text: 'Combinen oxigen amb un altre element. En Stock s’anomena “òxid de …” i s’indica el nombre d’oxidació si l’element presenta diverses valències.',
   },
   {
-    title: 'Peròxids',
-    text: 'Contenen l’anió O2²⁻; l’oxigen actua amb −1. Sovint es confonen amb òxids normals, així que convé comprovar la proporció de l’oxigen.',
-  },
-  {
     title: 'Hidrurs',
     text: 'Amb metalls s’anomenen com a hidrurs metàl·lics; amb no-metalls poden aparèixer noms tradicionals com àcid clorhídric o hidrur de fòsfor.',
   },
@@ -108,12 +102,8 @@ export const STUDY_GUIDE = [
     text: 'Provenen de substituir els hidrògens d’un oxoàcid per metalls. La terminació de l’anió ajuda: sulfit/sulfat, nitrit/nitrat, clorit/clorat…',
   },
   {
-    title: 'Sals àcides',
-    text: 'Encara conserven hidrogen a l’anió: NaHSO4, KHCO3… S’anomenen com a hidrogenosulfat, hidrogenocarbonat, etc.',
-  },
-  {
-    title: 'Amoni',
-    text: 'El catió NH4⁺ funciona com un ió positiu poliatòmic. Han d’aparèixer parèntesis quan es repeteix: (NH4)2SO4.',
+    title: 'Ions',
+    text: 'Cal reconèixer i formular els ions més habituals de 1r de Batxillerat: cations metàl·lics i anions com clorur, sulfat, nitrat, hidròxid o amoni, sense entrar en casos estranys.',
   },
 ];
 
@@ -208,10 +198,22 @@ export const COMPOUNDS: CompoundEntry[] = [
   entry('nh42s', 'amonio', 'media', '(NH4)2S', 'sulfur d\'amonio', 'sulfur de diamoni', 'sulfur amònic', 'L’anió sulfur es S²⁻, por eso calen dos NH4⁺.'),
   entry('nh4hco3', 'amonio', 'dificil', 'NH4HCO3', 'hidrogenocarbonat d\'amonio', 'hidrogenotrioxocarbonat (IV) d\'amonio', 'bicarbonat d\'amonio', 'És una sal àcida del catió amoni.'),
   entry('nh4clo4', 'amonio', 'dificil', 'NH4ClO4', 'perclorat d\'amonio', 'tetraoxoclorat (VII) d\'amonio', 'perclorat amònic', 'Combina NH4⁺ con l’anió perclorat.'),
+  entry('na_ion', 'iones', 'facil', 'Na+', 'ió sodi', 'catió sodi', 'ió sodi', 'El sodi forma el catió Na+ amb càrrega +1.'),
+  entry('ca_ion', 'iones', 'facil', 'Ca2+', 'ió calci', 'catió calci', 'ió calci', 'El calci forma el catió Ca2+.'),
+  entry('fe2_ion', 'iones', 'media', 'Fe2+', 'ió ferro (II)', 'catió ferro (II)', 'ió ferrós', 'El ferro pot formar Fe2+ i Fe3+; aquí correspon Fe2+.'),
+  entry('fe3_ion', 'iones', 'media', 'Fe3+', 'ió ferro (III)', 'catió ferro (III)', 'ió fèrric', 'Fe3+ és el catió ferro(III).'),
+  entry('cu_ion', 'iones', 'media', 'Cu2+', 'ió coure (II)', 'catió coure (II)', 'ió cúpric', 'El coure(II) forma Cu2+.'),
+  entry('nh4_ion', 'iones', 'facil', 'NH4+', 'ió amoni', 'catió amoni', 'ió amoni', 'NH4+ és el catió amoni.'),
+  entry('cl_ion', 'iones', 'facil', 'Cl-', 'ió clorur', 'anió clorur', 'ió clorur', 'El clorur és l’anió Cl-.'),
+  entry('oh_ion', 'iones', 'facil', 'OH-', 'ió hidròxid', 'anió hidròxid', 'ió hidròxid', 'L’ió hidròxid és OH-.'),
+  entry('no3_ion', 'iones', 'facil', 'NO3-', 'ió nitrat', 'anió nitrat', 'ió nitrat', 'NO3- és l’anió nitrat.'),
+  entry('so4_ion', 'iones', 'facil', 'SO4^2-', 'ió sulfat', 'anió sulfat', 'ió sulfat', 'SO4^2- és l’anió sulfat, amb càrrega -2.'),
+  entry('co3_ion', 'iones', 'facil', 'CO3^2-', 'ió carbonat', 'anió carbonat', 'ió carbonat', 'CO3^2- és l’anió carbonat.'),
+  entry('po4_ion', 'iones', 'media', 'PO4^3-', 'ió fosfat', 'anió fosfat', 'ió fosfat', 'PO4^3- és l’anió fosfat, amb càrrega -3.'),
 ];
 
 export const DEFAULT_SETTINGS = {
-  activeTypes: Object.keys(COMPOUND_TYPE_LABELS) as CompoundType[],
+  activeTypes: ['oxidos_metalicos', 'oxidos_no_metalicos', 'hidruros_metalicos', 'hidruros_no_metalicos', 'hidroxidos', 'sales_binarias', 'hidrácidos', 'oxoacidos', 'oxosales', 'iones'] as CompoundType[],
   activeNomenclatures: ['stock', 'sistematica', 'tradicional'] as Nomenclature[],
   difficulty: 'media' as Difficulty,
   examMinutes: 35,

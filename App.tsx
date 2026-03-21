@@ -34,6 +34,7 @@ interface QuickState {
   answer: string;
   checked: boolean;
   result: ReturnType<typeof evaluateAnswer> | null;
+  showSolution: boolean;
 }
 
 interface ExamState {
@@ -103,13 +104,13 @@ function App() {
 
   useEffect(() => {
     if (!quickState && exercisePool.length) {
-      setQuickState({ exercise: createQuickExercise(exercisePool), answer: '', checked: false, result: null });
+      setQuickState({ exercise: createQuickExercise(exercisePool), answer: '', checked: false, result: null, showSolution: false });
     }
   }, [exercisePool, quickState]);
 
   useEffect(() => {
     if (!reviewState && reviewPool.length) {
-      setReviewState({ exercise: createQuickExercise(reviewPool), answer: '', checked: false, result: null });
+      setReviewState({ exercise: createQuickExercise(reviewPool), answer: '', checked: false, result: null, showSolution: false });
     }
   }, [reviewPool, reviewState]);
 
@@ -141,12 +142,12 @@ function App() {
 
   const nextQuick = () => {
     if (!exercisePool.length) return;
-    setQuickState({ exercise: createQuickExercise(exercisePool), answer: '', checked: false, result: null });
+    setQuickState({ exercise: createQuickExercise(exercisePool), answer: '', checked: false, result: null, showSolution: false });
   };
 
   const nextReview = () => {
     if (!reviewPool.length) return;
-    setReviewState({ exercise: createQuickExercise(reviewPool), answer: '', checked: false, result: null });
+    setReviewState({ exercise: createQuickExercise(reviewPool), answer: '', checked: false, result: null, showSolution: false });
   };
 
   const checkQuick = (mode: 'quick' | 'review') => {
@@ -154,7 +155,7 @@ function App() {
     if (!state) return;
     const result = evaluateAnswer(state.exercise, state.answer, settings);
     setProgress((prev) => recordAnswer(prev, state.exercise, state.answer, result.isCorrect));
-    const updater = { ...state, checked: true, result };
+    const updater = { ...state, checked: true, result, showSolution: result.isCorrect ? true : false };
     if (mode === 'quick') setQuickState(updater);
     else setReviewState(updater);
   };
@@ -184,7 +185,7 @@ function App() {
     const wrongItems = examState.items.filter((_, index) => examState.results[index] && !examState.results[index].isCorrect);
     if (!wrongItems.length) return;
     const exercise = wrongItems[0];
-    setReviewState({ exercise, answer: '', checked: false, result: null });
+    setReviewState({ exercise, answer: '', checked: false, result: null, showSolution: false });
     setView('repaso');
   };
 
@@ -246,8 +247,31 @@ function App() {
         {state.checked && state.result && (
           <div className={`feedback ${state.result.isCorrect ? 'success' : 'error'}`}>
             <strong>{state.result.isCorrect ? '✅ Correcte.' : '❌ Incorrecte.'}</strong>
-            <span>Solució: {state.result.expected.join(' / ')}.</span>
-            {(settings.autoExplanation || !state.result.isCorrect) && <p>{state.result.explanation}</p>}
+            {state.result.isCorrect ? (
+              <>
+                <span>Solució: {state.result.expected.join(' / ')}.</span>
+                {(settings.autoExplanation || !state.result.isCorrect) && <p>{state.result.explanation}</p>}
+              </>
+            ) : state.showSolution ? (
+              <>
+                <span>Solució: {state.result.expected.join(' / ')}.</span>
+                <p>{state.result.explanation}</p>
+              </>
+            ) : (
+              <>
+                <span>No es mostra la solució fins que la demanis.</span>
+                <button
+                  className="button ghost small"
+                  onClick={() =>
+                    mode === 'quick'
+                      ? setQuickState({ ...state, showSolution: true })
+                      : setReviewState({ ...state, showSolution: true })
+                  }
+                >
+                  Mostrar solució
+                </button>
+              </>
+            )}
           </div>
         )}
       </section>
@@ -291,8 +315,8 @@ function App() {
                 <p className="eyebrow">Preparació d'examen</p>
                 <h2>Fes molts exercicis seguits, corregeix a l’instant i repeteix exactament allò que més et costa.</h2>
                 <p>
-                  L'app genera exercicis d'òxids, hidrurs, hidròxids, sals binàries, hidràcids, oxoàcids, oxosals,
-                  sals àcides i amoni amb nomenclatura Stock, sistemàtica i tradicional.
+                  L'app genera exercicis d'òxids, hidrurs, hidròxids, àcids hidràcids, oxoàcids, sals binàries, oxisals i ions
+                  amb nomenclatura Stock, sistemàtica i tradicional, sense casos avançats ni compostos fora del temari de 1r de Batxillerat.
                 </p>
                 <div className="row wrap">
                   <button className="button primary" onClick={() => setView('practica')}>Començar pràctica ràpida</button>
@@ -310,7 +334,7 @@ function App() {
             <section className="panel">
               <div className="section-header">
                 <h3>Guia ràpida integrada</h3>
-                <span className="muted">Resum dels tipus de compostos més preguntats.</span>
+                <span className="muted">Resum dels tipus de compostos i ions més preguntats a 1r de Batxillerat.</span>
               </div>
               <div className="guide-grid">
                 {STUDY_GUIDE.map((item) => (
@@ -331,7 +355,7 @@ function App() {
             <section className="panel info-bar">
               <h3>Repàs d'errors</h3>
               <p>
-                Aquest mode prioritza compostos que ja has fallat. Si et costen Stock o les oxosals, apareixeran amb més freqüència.
+                Aquest mode prioritza compostos que ja has fallat. Si et costen Stock, les oxisals o els ions, apareixeran amb més freqüència.
               </p>
             </section>
             {renderPracticeCard(reviewState, 'review')}
