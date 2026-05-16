@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Castellano 1º Bach — Medieval y Renacimiento</title>
+  <style>
+    :root{--bg:#0f172a;--card:#111827;--ink:#e5e7eb;--muted:#9ca3af;--a:#22d3ee;--b:#a78bfa;--ok:#34d399;--warn:#f59e0b;--danger:#fb7185}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:linear-gradient(120deg,#0b1025,#111827 45%,#0b1324);color:var(--ink)}
+    .wrap{max-width:1100px;margin:auto;padding:24px}
+    h1{font-size:clamp(1.7rem,3vw,2.5rem);margin:.3rem 0;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;color:transparent}
+    h2{margin:0 0 10px}
+    .sub{color:var(--muted)}
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));margin-top:16px}
+    .card{background:rgba(17,24,39,.8);border:1px solid #23324f;border-radius:18px;padding:16px;backdrop-filter:blur(4px);box-shadow:0 8px 30px rgba(0,0,0,.28)}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:.8rem;border:1px solid #35507d;color:#b5d3ff}
+    .hl{background:linear-gradient(transparent 60%,#2563eb66 60%)}
+    details{margin:10px 0;background:#0b1220;border:1px solid #24344f;padding:10px;border-radius:12px}
+    summary{cursor:pointer;font-weight:700}
+    .quiz button,.tabs button{background:#1f2937;color:#dbeafe;border:1px solid #334155;padding:8px 10px;border-radius:10px;cursor:pointer;margin:4px}
+    .quiz button:hover,.tabs button:hover{background:#334155}
+    .ok{color:var(--ok)} .bad{color:var(--danger)} .warn{color:var(--warn)}
+    .line{height:8px;background:#1e293b;border-radius:999px;overflow:hidden}.line>i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));width:0%}
+    .timeline{border-left:3px solid #334155;padding-left:14px}.timeline div{margin:8px 0}
+    .small{font-size:.92rem;color:#cbd5e1}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Lengua Castellana y Literatura · 1º Bachillerato</h1>
+  <p class="sub">Versión <span class="hl">ultravisual + interactiva</span> para memorizar con pocas lecturas.</p>
+
+  <div class="card">
+    <h2>Mapa rápido (3 bloques)</h2>
+    <div class="tabs">
+      <button onclick="show('m1')">1) Prerrenacimiento</button>
+      <button onclick="show('m2')">2) Renacimiento</button>
+      <button onclick="show('m3')">3) Autores clave</button>
+    </div>
+    <div id="m1" class="small">Romancero viejo/nuevo, poesía cancioneril, Jorge Manrique y La Celestina.</div>
+    <div id="m2" class="small" hidden>Humanismo, antropocentrismo, novela renacentista (caballerías, pastoril, morisca, bizantina, picaresca).</div>
+    <div id="m3" class="small" hidden>Garcilaso, Fray Luis, San Juan de la Cruz + Lazarillo.</div>
+  </div>
+
+  <div class="grid">
+    <section class="card"><span class="pill">ROMANCERO</span>
+      <h2>Esencia</h2>
+      <ul>
+        <li><b>Romance</b>: narración en versos.</li>
+        <li><span class="hl">Métrica</span>: octosílabos; rima asonante en pares, impares sueltos.</li>
+        <li>Origen: del verso épico (cantares de gesta).</li>
+      </ul>
+      <details><summary>Viejo vs Nuevo</summary>
+        <p><b>Viejo</b> (hasta ~1550): tradición oral, juglares, ciclos históricos.</p>
+        <p><b>Nuevo</b> (~1550-1650): más lírico y artístico, menos épico.</p>
+      </details>
+    </section>
+
+    <section class="card"><span class="pill">POESÍA CANCIONERIL</span>
+      <h2>Ideas clave</h2>
+      <ul><li>Origen provenzal.</li><li>Cortesana, artificiosa, juegos de ingenio.</li><li>Temas: amor, moral, religión.</li></ul>
+      <details><summary>Autores y cancioneros</summary>
+        Baena · Palacio · General.<br/>Marqués de Santillana · Juan de Mena · Jorge Manrique.
+      </details>
+    </section>
+
+    <section class="card"><span class="pill">JORGE MANRIQUE</span>
+      <h2>Coplas a la muerte de su padre</h2>
+      <ul>
+        <li>1476-1479.</li><li>Copla manriqueña: <b>8a 8b 4c / 8a 8b 4c</b>...</li>
+        <li>Temas: <span class="hl">tempus fugit</span>, <span class="hl">ubi sunt</span>, fama, muerte.</li>
+      </ul>
+      <p class="small">3 vidas: terrenal · sobrenatural · fama.</p>
+    </section>
+
+    <section class="card"><span class="pill">LA CELESTINA</span>
+      <h2>Resumen flash</h2>
+      <ul>
+        <li>Fernando de Rojas. 1499 (16 actos), 1500, 1502 (21 actos).</li>
+        <li>Obra dialogada para leer.</li>
+        <li>Pasiones: amor (Calisto/Melibea), codicia (Celestina/criados).</li>
+      </ul>
+      <details><summary>Final trágico en 1 línea</summary>Mueren Celestina, criados, Calisto y Melibea; cierre moralizante de Pleberio.</details>
+    </section>
+
+    <section class="card"><span class="pill">RENACIMIENTO</span>
+      <h2>Qué cambia</h2>
+      <ul><li>Humanismo: del teocentrismo al <b>antropocentrismo</b>.</li><li>Naturaleza idealizada, mitología, carpe diem, beatus ille.</li></ul>
+      <div class="timeline small">
+        <div><b>Carlos I</b> (1ª mitad s. XVI): apertura europea, italianismo.</div>
+        <div><b>Felipe II</b> (2ª mitad s. XVI): Contrarreforma, cierre ideológico.</div>
+      </div>
+    </section>
+
+    <section class="card"><span class="pill">NOVELA</span>
+      <h2>Géneros</h2>
+      <ul>
+        <li>Caballerías (Amadís)</li><li>Pastoril</li><li>Morisca</li><li>Bizantina</li><li><b>Picaresca</b> ⭐</li>
+      </ul>
+      <details><summary>Lazarillo en 20 segundos</summary>Autobiográfica, antihéroe, realismo social, crítica dura, evolución del protagonista.</details>
+    </section>
+  </div>
+
+  <div class="card quiz">
+    <h2>Mini test interactivo (memorización activa)</h2>
+    <p id="score" class="small">Puntuación: 0/5</p>
+    <div id="q"></div>
+    <div id="opts"></div>
+    <p id="fb"></p>
+    <div class="line"><i id="bar"></i></div>
+  </div>
+</div>
+
+<script>
+const qs=[
+['¿Rima del romance?', ['Asonante en pares', 'Consonante total', 'Libre total'],0],
+['Romancero nuevo (aprox.)', ['1550-1650', '1350-1450', '1700-1800'],0],
+['Tema NO típico de Manrique', ['Ubi sunt', 'Tempus fugit', 'Futurismo'],2],
+['La Celestina en 1502 pasa a…', ['Comedia', 'Tragicomedia', 'Égloga'],1],
+['Rasgo clave del Lazarillo', ['Héroe noble', 'Autobiografía picaresca', 'Épica caballeresca'],1]
+];
+let i=0,s=0;
+function render(){if(i>=qs.length){q.innerHTML='<b>¡Terminado!</b>';opts.innerHTML='';fb.innerHTML=`Resultado final: <span class="${s>=4?'ok':'warn'}">${s}/${qs.length}</span>`;bar.style.width='100%';return;}
+q.textContent=(i+1)+'. '+qs[i][0];opts.innerHTML='';qs[i][1].forEach((o,idx)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>ans(idx);opts.appendChild(b);});score.textContent=`Puntuación: ${s}/${qs.length}`;bar.style.width=(i/qs.length*100)+'%';}
+function ans(idx){const ok=idx===qs[i][2];fb.innerHTML=ok?'<span class="ok">✔ Correcto</span>':'<span class="bad">✘ Incorrecto</span>'; if(ok)s++; i++; setTimeout(render,450);}
+function show(id){['m1','m2','m3'].forEach(x=>document.getElementById(x).hidden=x!==id)}
+render();
+</script>
+</body>
+</html>
